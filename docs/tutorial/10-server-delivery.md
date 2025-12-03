@@ -275,7 +275,9 @@ And finally the server will send the missing messages upon (re)connection:
 ```js title="index.js"
 // [...]
 
+// highlight-start
 io.on('connection', async (socket) => {
+// highlight-end
   socket.on('chat message', async (msg) => {
     let result;
     try {
@@ -285,7 +287,6 @@ io.on('connection', async (socket) => {
       return;
     }
     io.emit('chat message', msg, result.lastID);
-  });
 
   // highlight-start
   if (!socket.recovered) {
